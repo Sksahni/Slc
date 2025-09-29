@@ -1,0 +1,1230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SLC Coder - Premium Secret Language Converter</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google AdSense Code -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-app-pub-8589832833907080/3601585343" crossorigin="anonymous"></script>
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: #e0e0e0;
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            overflow-x: hidden;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        /* Thunderbolt Animation */
+        .thunderbolt {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.05;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        
+        .bolt {
+            position: absolute;
+            width: 4px;
+            background: linear-gradient(to bottom, transparent, #00a8ff, transparent);
+            opacity: 0;
+            animation: lightning 8s infinite;
+        }
+        
+        .bolt::before, .bolt::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 50%;
+            background: linear-gradient(to right, transparent, #00a8ff, transparent);
+        }
+        
+        .bolt::before {
+            top: 0;
+            transform: skewX(45deg);
+        }
+        
+        .bolt::after {
+            bottom: 0;
+            transform: skewX(-45deg);
+        }
+        
+        .bolt:nth-child(1) {
+            left: 20%;
+            height: 200px;
+            animation-delay: 2s;
+        }
+        
+        .bolt:nth-child(2) {
+            left: 50%;
+            height: 300px;
+            animation-delay: 4s;
+        }
+        
+        .bolt:nth-child(3) {
+            left: 80%;
+            height: 250px;
+            animation-delay: 6s;
+        }
+        
+        .bolt:nth-child(4) {
+            left: 35%;
+            height: 350px;
+            animation-delay: 8s;
+        }
+        
+        .bolt:nth-child(5) {
+            left: 65%;
+            height: 280px;
+            animation-delay: 10s;
+        }
+        
+        @keyframes lightning {
+            0%, 100% {
+                opacity: 0;
+                transform: translateY(-100%);
+            }
+            1%, 3% {
+                opacity: 1;
+                transform: translateY(100%);
+            }
+            4% {
+                opacity: 0;
+                transform: translateY(100%);
+            }
+        }
+        
+        /* Navigation */
+        .nav-container {
+            width: 100%;
+            max-width: 900px;
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+        }
+        
+        .nav-icons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .nav-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #00a8ff, #007bff);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 168, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .nav-icon::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: linear-gradient(45deg, #00a8ff, #007bff, #00a8ff);
+            z-index: -1;
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .nav-icon:hover::before {
+            opacity: 0.4;
+        }
+        
+        .nav-icon:hover {
+            transform: translateY(-3px) scale(1.1);
+            box-shadow: 0 8px 20px rgba(0, 168, 255, 0.5);
+        }
+        
+        .nav-icon i {
+            font-size: 1.2rem;
+        }
+        
+        /* Ad Container Styles */
+        .ad-container {
+            width: 100%;
+            max-width: 900px;
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+            padding: 10px;
+            background: rgba(18, 28, 45, 0.7);
+            border-radius: 10px;
+            border: 1px solid rgba(0, 168, 255, 0.2);
+        }
+        
+        .ad-container.horizontal {
+            height: 90px;
+        }
+        
+        .ad-container.vertical {
+            width: 160px;
+            height: 600px;
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .ad-container.mobile {
+            display: none;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 900px;
+            background: linear-gradient(135deg, rgba(18, 28, 45, 0.9) 0%, rgba(14, 22, 35, 0.9) 100%);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            padding: 30px;
+            margin-top: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 168, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(0, 168, 255, 0.5), transparent);
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        h1 {
+            color: #00a8ff;
+            font-size: 3rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-shadow: 0 0 15px rgba(0, 168, 255, 0.5);
+        }
+        
+        h2 {
+            color: #00a8ff;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(0, 168, 255, 0.3);
+            font-weight: 600;
+            text-shadow: 0 0 10px rgba(0, 168, 255, 0.3);
+        }
+        
+        .description {
+            color: #a0aec0;
+            font-size: 1.1rem;
+            max-width: 800px;
+            text-align: center;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .acronym {
+            font-weight: bold;
+            color: #00a8ff;
+            font-size: 1.2em;
+            text-shadow: 0 0 10px rgba(0, 168, 255, 0.3);
+        }
+        
+        .section {
+            margin-bottom: 40px;
+            padding: 25px;
+            background: linear-gradient(135deg, rgba(30, 40, 55, 0.7) 0%, rgba(25, 35, 50, 0.7) 100%);
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s;
+            border: 1px solid rgba(0, 168, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, #00a8ff, #007bff);
+        }
+        
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 168, 255, 0.2);
+        }
+        
+        textarea {
+            width: 100%;
+            min-height: 150px;
+            padding: 15px;
+            border: 2px solid rgba(0, 168, 255, 0.2);
+            border-radius: 10px;
+            font-size: 16px;
+            resize: vertical;
+            margin-bottom: 15px;
+            transition: border-color 0.3s;
+            background: rgba(20, 30, 45, 0.7);
+            color: #e0e0e0;
+        }
+        
+        textarea:focus {
+            border-color: #00a8ff;
+            outline: none;
+            background: rgba(25, 35, 50, 0.8);
+            box-shadow: 0 0 0 3px rgba(0, 168, 255, 0.1);
+        }
+        
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        
+        /* Premium button styles */
+        .premium-btn {
+            padding: 14px 28px;
+            background: linear-gradient(to right, #00a8ff, #007bff);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 168, 255, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .premium-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+            z-index: 1;
+        }
+        
+        .premium-btn:hover::before {
+            left: 100%;
+        }
+        
+        .premium-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 168, 255, 0.5);
+        }
+        
+        .premium-btn:active {
+            transform: translateY(0);
+        }
+        
+        .premium-btn.encode {
+            background: linear-gradient(to right, #00a8ff, #007bff);
+        }
+        
+        .premium-btn.decode {
+            background: linear-gradient(to right, #2ecc71, #27ae60);
+        }
+        
+        .premium-btn.clear {
+            background: linear-gradient(to right, #e74c3c, #c0392b);
+        }
+        
+        .premium-btn.toggle {
+            background: linear-gradient(to right, #9b59b6, #8e44ad);
+        }
+        
+        .output-container {
+            position: relative;
+        }
+        
+        .output-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #00a8ff;
+            font-size: 1.1em;
+        }
+        
+        .symbol-preview {
+            margin-top: 30px;
+            padding: 25px;
+            background: linear-gradient(135deg, rgba(30, 40, 55, 0.7) 0%, rgba(25, 35, 50, 0.7) 100%);
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(0, 168, 255, 0.2);
+            display: none;
+        }
+        
+        .symbol-preview.show {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .symbol-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .symbol-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 15px 10px;
+            background: rgba(20, 30, 45, 0.7);
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s;
+            border: 1px solid rgba(0, 168, 255, 0.2);
+        }
+        
+        .symbol-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 168, 255, 0.2);
+        }
+        
+        .symbol {
+            font-size: 28px;
+            margin-bottom: 8px;
+            color: #00a8ff;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .char {
+            font-size: 14px;
+            color: #e74c3c;
+            font-weight: bold;
+            background: rgba(30, 40, 55, 0.7);
+            padding: 4px 8px;
+            border-radius: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .desc {
+            font-size: 10px;
+            text-align: center;
+            margin-top: 8px;
+            color: #a0aec0;
+            line-height: 1.2;
+        }
+        
+        footer {
+            margin-top: 30px;
+            color: #a0aec0;
+            text-align: center;
+            font-size: 1rem;
+            padding: 15px;
+            background: rgba(18, 28, 45, 0.7);
+            border-radius: 10px;
+            width: 100%;
+            max-width: 900px;
+            border: 1px solid rgba(0, 168, 255, 0.2);
+        }
+        
+        /* Password Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background: linear-gradient(135deg, rgba(30, 40, 55, 0.95) 0%, rgba(25, 35, 50, 0.95) 100%);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+            border: 1px solid rgba(0, 168, 255, 0.3);
+        }
+        
+        .modal h2 {
+            color: #00a8ff;
+            margin-bottom: 15px;
+        }
+        
+        .modal p {
+            margin-bottom: 20px;
+            color: #a0aec0;
+        }
+        
+        .password-input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid rgba(0, 168, 255, 0.2);
+            border-radius: 8px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            transition: border-color 0.3s;
+            background: rgba(20, 30, 45, 0.7);
+            color: #e0e0e0;
+        }
+        
+        .password-input:focus {
+            border-color: #00a8ff;
+            outline: none;
+        }
+        
+        .hint {
+            background: rgba(20, 30, 45, 0.7);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #00a8ff;
+        }
+        
+        .hint-title {
+            font-weight: bold;
+            color: #00a8ff;
+            margin-bottom: 5px;
+        }
+        
+        /* Info Pages */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 999;
+        }
+        
+        .overlay.show {
+            display: block;
+        }
+        
+        .info-page {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 700px;
+            background: linear-gradient(135deg, rgba(30, 40, 55, 0.95) 0%, rgba(25, 35, 50, 0.95) 100%);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            max-height: 80vh;
+            overflow-y: auto;
+            border: 1px solid rgba(0, 168, 255, 0.3);
+        }
+        
+        .info-page.show {
+            display: block;
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .close-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        .info-content {
+            margin-top: 20px;
+        }
+        
+        .info-content h3 {
+            color: #00a8ff;
+            margin: 15px 0 10px;
+        }
+        
+        .info-content p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        @media (max-width: 600px) {
+            .button-container {
+                flex-direction: column;
+            }
+            
+            .premium-btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .symbol-grid {
+                grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .container {
+                padding: 20px;
+            }
+            
+            .nav-icons {
+                gap: 10px;
+            }
+            
+            .nav-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+            
+            .ad-container.vertical {
+                display: none;
+            }
+            
+            .ad-container.mobile {
+                display: flex;
+                height: 100px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Thunderbolt Animation -->
+    <div class="thunderbolt">
+        <div class="bolt"></div>
+        <div class="bolt"></div>
+        <div class="bolt"></div>
+        <div class="bolt"></div>
+        <div class="bolt"></div>
+    </div>
+    
+    <!-- Navigation Icons -->
+    <div class="nav-container">
+        <div class="nav-icons">
+            <div class="nav-icon" id="aboutBtn">
+                <i class="fas fa-info"></i>
+            </div>
+            <div class="nav-icon" id="privacyBtn">
+                <i class="fas fa-shield-alt"></i>
+            </div>
+            <div class="nav-icon" id="contactBtn">
+                <i class="fas fa-envelope"></i>
+            </div>
+            <div class="nav-icon" id="termsBtn">
+                <i class="fas fa-file-contract"></i>
+            </div>
+        </div>
+    </div>
+    
+    <!-- AdSense Ad Units -->
+    <!-- Top Banner Ad -->
+    <div class="ad-container horizontal">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-app-pub-8589832833907080/3601585343"
+             data-ad-slot="YOUR_AD_SLOT_ID_1"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+    
+    <!-- Sidebar Ad (Desktop Only) -->
+    <div class="ad-container vertical">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-app-pub-8589832833907080/3601585343"
+             data-ad-slot="YOUR_AD_SLOT_ID_2"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+    
+    <header>
+        <h1>SLC CODER</h1>
+        <p class="description"><span class="acronym">SLC</span> stands for <span class="acronym">Secret Language Coder</span> - Encode your messages into a secret symbol language or decode symbol messages back to text.</p>
+    </header>
+    
+    <div class="container">
+        <div class="section" id="coder">
+            <h2>Coder</h2>
+            <p>Enter text to convert to secret symbols:</p>
+            <textarea id="inputText" placeholder="Type your message here..."></textarea>
+            <div class="button-container">
+                <button class="premium-btn encode" id="encodeBtn"><i class="fas fa-lock"></i> Encode to Symbols</button>
+                <button class="premium-btn clear" id="clearCoder"><i class="fas fa-trash"></i> Clear</button>
+            </div>
+            <div class="output-container">
+                <span class="output-label">Encoded Symbols:</span>
+                <textarea id="outputSymbols" readonly></textarea>
+            </div>
+        </div>
+        
+        <!-- In-content Ad -->
+        <div class="ad-container horizontal">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-app-pub-8589832833907080/5461461927"
+                 data-ad-slot="YOUR_AD_SLOT_ID_3"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+        
+        <div class="section" id="decoder">
+            <h2>Decoder</h2>
+            <p>Paste symbols to convert back to text:</p>
+            <textarea id="inputSymbols" placeholder="Paste symbols here..."></textarea>
+            <div class="button-container">
+                <button class="premium-btn decode" id="decodeBtn"><i class="fas fa-lock-open"></i> Decode to Text</button>
+                <button class="premium-btn clear" id="clearDecoder"><i class="fas fa-trash"></i> Clear</button>
+            </div>
+            <div class="output-container">
+                <span class="output-label">Decoded Text:</span>
+                <textarea id="outputText" readonly></textarea>
+            </div>
+        </div>
+        
+        <button class="premium-btn toggle" id="toggleSymbols"><i class="fas fa-book"></i> Show Symbol Reference</button>
+        
+        <div class="symbol-preview" id="symbolPreview">
+            <h2>Symbol Reference</h2>
+            <p>Each character is mapped to these unique symbols:</p>
+            <div class="symbol-grid" id="symbolMap"></div>
+        </div>
+    </div>
+    
+    <!-- Bottom Banner Ad -->
+    <div class="ad-container horizontal">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-app-pub-8589832833907080/9034053032"
+             data-ad-slot="YOUR_AD_SLOT_ID_4"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+    
+    <!-- Mobile Ad (Mobile Only) -->
+    <div class="ad-container mobile">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-app-pub-8589832833907080/5685000811"
+             data-ad-slot="YOUR_AD_SLOT_ID_5"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+    
+    <footer>
+        <p>SLC Coder © 2023 | Premium Secret Language Converter</p>
+    </footer>
+    
+    <!-- Password Modal -->
+    <div class="modal" id="passwordModal">
+        <div class="modal-content">
+            <h2>Symbol Reference Locked</h2>
+            <p>Enter the password to access the symbol reference:</p>
+            
+            <div class="hint">
+                <div class="hint-title">Hint:</div>
+                <div>tum dudh mangoge Ham khir Denge Tum Kashmir mangoge!!</div>
+            </div>
+            
+            <input type="password" class="password-input" id="passwordInput" placeholder="Enter password">
+            <div class="button-container">
+                <button class="premium-btn encode" id="submitPassword"><i class="fas fa-key"></i> Submit</button>
+                <button class="premium-btn clear" id="cancelPassword"><i class="fas fa-times"></i> Cancel</button>
+            </div>
+            <p id="errorMsg" style="color: #e74c3c; margin-top: 10px; display: none;">Incorrect password. Please try again.</p>
+        </div>
+    </div>
+    
+    <!-- Info Pages -->
+    <div class="overlay" id="overlay"></div>
+    
+    <div class="info-page" id="aboutPage">
+        <div class="close-btn" id="closeAbout">
+            <i class="fas fa-times"></i>
+        </div>
+        <h2>About SLC Coder</h2>
+        <div class="info-content">
+            <p>SLC Coder (Secret Language Coder) is a sophisticated web application designed to encode and decode messages using a unique symbolic language system. Our tool transforms regular text into a secret code using specialized symbols, providing a fun and secure way to communicate privately.</p>
+            <h3>Our Mission</h3>
+            <p>We aim to provide a user-friendly platform for encoding messages with a unique symbol system that offers both security and visual appeal.</p>
+            <h3>How It Works</h3>
+            <p>Each character is mapped to a unique symbol, creating a comprehensive language that can encode any message. The decoder translates these symbols back to readable text.</p>
+            <h3>Applications</h3>
+            <p>Use SLC Coder for fun messages, puzzles, educational purposes, or any situation where you want to keep your communications private and visually interesting.</p>
+        </div>
+    </div>
+    
+    <div class="info-page" id="privacyPage">
+        <div class="close-btn" id="closePrivacy">
+            <i class="fas fa-times"></i>
+        </div>
+        <h2>Privacy Policy</h2>
+        <div class="info-content">
+            <p>At SLC Coder, we take your privacy seriously. This Privacy Policy explains how we handle your data when you use our application.</p>
+            <h3>Data Collection</h3>
+            <p>We do not collect, store, or transmit any of the text you encode or decode using our application. All processing happens locally in your browser, ensuring complete privacy for your messages.</p>
+            <h3>Cookies</h3>
+            <p>Our application may use cookies to enhance user experience, but these do not contain any personally identifiable information.</p>
+            <h3>Third-Party Services</h3>
+            <p>We use Font Awesome for icons. These services may collect usage data according to their respective privacy policies.</p>
+            <h3>Changes to This Policy</h3>
+            <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page.</p>
+        </div>
+    </div>
+    
+    <div class="info-page" id="contactPage">
+        <div class="close-btn" id="closeContact">
+            <i class="fas fa-times"></i>
+        </div>
+        <h2>Contact Us</h2>
+        <div class="info-content">
+            <p>We'd love to hear from you! Whether you have questions about SLC Coder, suggestions for improvement, or need technical support, please don't hesitate to reach out.</p>
+            <h3>Email</h3>
+            <p>support@slccoder.com</p>
+            <h3>Feedback</h3>
+            <p>We're constantly working to improve SLC Coder. If you have ideas for new features or encounter any issues while using our application, please let us know.</p>
+            <h3>Technical Support</h3>
+            <p>For technical assistance, please include details about your device, browser, and the problem you're experiencing to help us resolve your issue more quickly.</p>
+        </div>
+    </div>
+    
+    <div class="info-page" id="termsPage">
+        <div class="close-btn" id="closeTerms">
+            <i class="fas fa-times"></i>
+        </div>
+        <h2>Terms & Conditions</h2>
+        <div class="info-content">
+            <p>By using SLC Coder, you agree to the following terms and conditions:</p>
+            <h3>Use of Service</h3>
+            <p>SLC Coder is provided for personal and educational use. You may not use our service for any illegal or unauthorized purpose.</p>
+            <h3>Intellectual Property</h3>
+            <p>The SLC Coder application and its original content, features, and functionality are owned by SLC Coder and are protected by international copyright, trademark, and other intellectual property laws.</p>
+            <h3>Limitation of Liability</h3>
+            <p>In no event shall SLC Coder be liable for any damages resulting from the use or inability to use the service. The service is provided "as is" without any warranties.</p>
+            <h3>Changes to Terms</h3>
+            <p>We reserve the right to modify these terms at any time. We will provide notice of significant changes through our website.</p>
+        </div>
+    </div>
+
+    <script>
+        // Define the symbol mapping with updated alphabet and number symbols
+        const symbolMap = {
+            // Uppercase letters
+            'A': '𒀱',   // triangle + sun dot
+            'B': '𒀲',   // half curve + double line
+            'C': '𒀳',   // open arc shape
+            'D': '𒀴',   // square + tail
+            'E': '𒀵',   // 3 short parallel lines
+            'F': '𒀶',   // hook + bar
+            'G': '𒀷',   // spiral curve
+            'H': '𒀸',   // double pillar
+            'I': '𒀹',   // single pillar + dot
+            'J': '𒀺',   // curved hook pillar
+            'K': '𒀻',   // angled branch
+            'L': '𒀼',   // straight line + arc
+            'M': '𒀽',   // mountain triple peak
+            'N': '𒀾',   // zig-zag
+            'O': '𒀿',   // circle + cross
+            'P': '𒁀',   // leaf + stroke
+            'Q': '𒁁',   // circle + tail
+            'R': '𒁂',   // fish-like shape
+            'S': '𒁃',   // snake-like curve
+            'T': '𒁄',   // T-cross pillar
+            'U': '𒁅',   // cup shape + line
+            'V': '𒁆',   // V stroke + dot
+            'W': '𒁇',   // double V
+            'X': '𒁈',   // crossed spears
+            'Y': '𒁉',   // fork + dot
+            'Z': '𒁊',   // zig-zag lightning
+            
+            // Lowercase letters (same as uppercase for this implementation)
+            'a': '𒀱',   // triangle + sun dot
+            'b': '𒀲',   // half curve + double line
+            'c': '𒀳',   // open arc shape
+            'd': '𒀴',   // square + tail
+            'e': '𒀵',   // 3 short parallel lines
+            'f': '𒀶',   // hook + bar
+            'g': '𒀷',   // spiral curve
+            'h': '𒀸',   // double pillar
+            'i': '𒀹',   // single pillar + dot
+            'j': '𒀺',   // curved hook pillar
+            'k': '𒀻',   // angled branch
+            'l': '𒀼',   // straight line + arc
+            'm': '𒀽',   // mountain triple peak
+            'n': '𒀾',   // zig-zag
+            'o': '𒀿',   // circle + cross
+            'p': '𒁀',   // leaf + stroke
+            'q': '𒁁',   // circle + tail
+            'r': '𒁂',   // fish-like shape
+            's': '𒁃',   // snake-like curve
+            't': '𒁄',   // T-cross pillar
+            'u': '𒁅',   // cup shape + line
+            'v': '𒁆',   // V stroke + dot
+            'w': '𒁇',   // double V
+            'x': '𒁈',   // crossed spears
+            'y': '𒁉',   // fork + dot
+            'z': '𒁊',   // zig-zag lightning
+            
+            // Numbers
+            '0': '𒐕⟁',  // Sun circle with inner spiral – eternity symbol
+            '1': '𒑰丨',  // Single stroke, curved like a serpent
+            '2': '𒑱≈',  // Double stroke, wavy as water-flow
+            '3': '𒑲≡',  // Triple stroke merged in parallel seal lines
+            '4': '𒐱✦',  // Crossed lines with central star-dot
+            '5': '𒑴𓆛', // Fish-seal mark with hidden hook curve
+            '6': '◈𒑵',  // Square with center dot, wrapped in diamond frame
+            '7': '𒑶Λ',  // Triangle with rising flame line
+            '8': '𒑷∞',  // Two stacked circles merged like infinity
+            '9': '𒑸҂',  // Comb mark with secret knot pattern
+            
+            // Punctuation and other characters
+            ' ': '␣', '.': '●', ',': '¤', 
+            '!': '†', '?': '¿', '@': '◎', '#': '⌗', '$': '€', 
+            '%': '‰', '^': '▲', '&': '⅋', '*': '⁑', '(': '【', 
+            ')': '】', '-': '⁻', '+': '⁺', '=': '≃', "'": 'ʻ', 
+            '"': "″", ':': '∶', ';': '⁏', '<': '‹', '>': '›', 
+            '/': '⁄', '\\': '⧵', '|': '¦', '[': '⟦', ']': '⟧', 
+            '{': '⦃', '}': '⦄', '`': '‵', '~': '∼'
+        };
+
+        // Alphabet symbol descriptions
+        const alphabetDescriptions = {
+            'A': 'triangle + sun dot',
+            'B': 'half curve + double line',
+            'C': 'open arc shape',
+            'D': 'square + tail',
+            'E': '3 short parallel lines',
+            'F': 'hook + bar',
+            'G': 'spiral curve',
+            'H': 'double pillar',
+            'I': 'single pillar + dot',
+            'J': 'curved hook pillar',
+            'K': 'angled branch',
+            'L': 'straight line + arc',
+            'M': 'mountain triple peak',
+            'N': 'zig-zag',
+            'O': 'circle + cross',
+            'P': 'leaf + stroke',
+            'Q': 'circle + tail',
+            'R': 'fish-like shape',
+            'S': 'snake-like curve',
+            'T': 'T-cross pillar',
+            'U': 'cup shape + line',
+            'V': 'V stroke + dot',
+            'W': 'double V',
+            'X': 'crossed spears',
+            'Y': 'fork + dot',
+            'Z': 'zig-zag lightning'
+        };
+
+        // Number symbol descriptions
+        const numberDescriptions = {
+            '0': 'Sun circle with inner spiral – eternity symbol',
+            '1': 'Single stroke, curved like a serpent',
+            '2': 'Double stroke, wavy as water-flow',
+            '3': 'Triple stroke merged in parallel seal lines',
+            '4': 'Crossed lines with central star-dot',
+            '5': 'Fish-seal mark with hidden hook curve',
+            '6': 'Square with center dot, wrapped in diamond frame',
+            '7': 'Triangle with rising flame line',
+            '8': 'Two stacked circles merged like infinity',
+            '9': 'Comb mark with secret knot pattern'
+        };
+
+        // Create reverse mapping for decoding
+        const reverseSymbolMap = {};
+        for (const [key, value] of Object.entries(symbolMap)) {
+            reverseSymbolMap[value] = key;
+        }
+
+        // Display the symbol mapping reference
+        const symbolMapContainer = document.getElementById('symbolMap');
+        for (const [char, symbol] of Object.entries(symbolMap)) {
+            // Skip lowercase letters to avoid duplication in the reference
+            if (char >= 'a' && char <= 'z') continue;
+            
+            const symbolItem = document.createElement('div');
+            symbolItem.className = 'symbol-item';
+            
+            const symbolEl = document.createElement('div');
+            symbolEl.className = 'symbol';
+            symbolEl.textContent = symbol;
+            
+            const charEl = document.createElement('div');
+            charEl.className = 'char';
+            charEl.textContent = char === ' ' ? 'space' : char;
+            
+            symbolItem.appendChild(symbolEl);
+            symbolItem.appendChild(charEl);
+            
+            // Add description for letters
+            if (char >= 'A' && char <= 'Z') {
+                const descEl = document.createElement('div');
+                descEl.className = 'desc';
+                descEl.textContent = alphabetDescriptions[char];
+                symbolItem.appendChild(descEl);
+            }
+            
+            // Add description for numbers
+            if (char >= '0' && char <= '9') {
+                const descEl = document.createElement('div');
+                descEl.className = 'desc';
+                descEl.textContent = numberDescriptions[char];
+                symbolItem.appendChild(descEl);
+            }
+            
+            symbolMapContainer.appendChild(symbolItem);
+        }
+
+        // Get DOM elements
+        const inputText = document.getElementById('inputText');
+        const outputSymbols = document.getElementById('outputSymbols');
+        const inputSymbols = document.getElementById('inputSymbols');
+        const outputText = document.getElementById('outputText');
+        const encodeBtn = document.getElementById('encodeBtn');
+        const decodeBtn = document.getElementById('decodeBtn');
+        const clearCoder = document.getElementById('clearCoder');
+        const clearDecoder = document.getElementById('clearDecoder');
+        const toggleSymbols = document.getElementById('toggleSymbols');
+        const symbolPreview = document.getElementById('symbolPreview');
+        
+        // Password elements
+        const passwordModal = document.getElementById('passwordModal');
+        const passwordInput = document.getElementById('passwordInput');
+        const submitPassword = document.getElementById('submitPassword');
+        const cancelPassword = document.getElementById('cancelPassword');
+        const errorMsg = document.getElementById('errorMsg');
+        
+        // Info page elements
+        const aboutBtn = document.getElementById('aboutBtn');
+        const privacyBtn = document.getElementById('privacyBtn');
+        const contactBtn = document.getElementById('contactBtn');
+        const termsBtn = document.getElementById('termsBtn');
+        const aboutPage = document.getElementById('aboutPage');
+        const privacyPage = document.getElementById('privacyPage');
+        const contactPage = document.getElementById('contactPage');
+        const termsPage = document.getElementById('termsPage');
+        const overlay = document.getElementById('overlay');
+        const closeAbout = document.getElementById('closeAbout');
+        const closePrivacy = document.getElementById('closePrivacy');
+        const closeContact = document.getElementById('closeContact');
+        const closeTerms = document.getElementById('closeTerms');
+
+        // Correct password
+        const correctPassword = "cheer denge";
+
+        // Toggle symbol reference with password protection
+        toggleSymbols.addEventListener('click', () => {
+            passwordModal.style.display = 'flex';
+        });
+
+        // Submit password
+        submitPassword.addEventListener('click', () => {
+            if (passwordInput.value === correctPassword) {
+                symbolPreview.classList.add('show');
+                passwordModal.style.display = 'none';
+                errorMsg.style.display = 'none';
+                passwordInput.value = '';
+                toggleSymbols.innerHTML = '<i class="fas fa-book"></i> Hide Symbol Reference';
+            } else {
+                errorMsg.style.display = 'block';
+                passwordInput.value = '';
+            }
+        });
+
+        // Cancel password
+        cancelPassword.addEventListener('click', () => {
+            passwordModal.style.display = 'none';
+            errorMsg.style.display = 'none';
+            passwordInput.value = '';
+        });
+
+        // Close modal if clicked outside
+        window.addEventListener('click', (e) => {
+            if (e.target === passwordModal) {
+                passwordModal.style.display = 'none';
+                errorMsg.style.display = 'none';
+                passwordInput.value = '';
+            }
+        });
+
+        // Encode text to symbols
+        encodeBtn.addEventListener('click', () => {
+            const text = inputText.value;
+            let encoded = '';
+            
+            for (let char of text) {
+                if (symbolMap[char]) {
+                    encoded += symbolMap[char];
+                } else {
+                    encoded += char; // Keep unknown characters as-is
+                }
+            }
+            
+            outputSymbols.value = encoded;
+        });
+
+        // Decode symbols to text
+        decodeBtn.addEventListener('click', () => {
+            const symbols = inputSymbols.value;
+            let decoded = '';
+            
+            for (let symbol of symbols) {
+                if (reverseSymbolMap[symbol]) {
+                    decoded += reverseSymbolMap[symbol];
+                } else {
+                    decoded += symbol; // Keep unknown symbols as-is
+                }
+            }
+            
+            outputText.value = decoded;
+        });
+
+        // Clear coder section
+        clearCoder.addEventListener('click', () => {
+            inputText.value = '';
+            outputSymbols.value = '';
+        });
+
+        // Clear decoder section
+        clearDecoder.addEventListener('click', () => {
+            inputSymbols.value = '';
+            outputText.value = '';
+        });
+        
+        // Info page functionality
+        aboutBtn.addEventListener('click', () => {
+            aboutPage.classList.add('show');
+            overlay.classList.add('show');
+        });
+        
+        privacyBtn.addEventListener('click', () => {
+            privacyPage.classList.add('show');
+            overlay.classList.add('show');
+        });
+        
+        contactBtn.addEventListener('click', () => {
+            contactPage.classList.add('show');
+            overlay.classList.add('show');
+        });
+        
+        termsBtn.addEventListener('click', () => {
+            termsPage.classList.add('show');
+            overlay.classList.add('show');
+        });
+        
+        // Close info pages
+        closeAbout.addEventListener('click', () => {
+            aboutPage.classList.remove('show');
+            overlay.classList.remove('show');
+        });
+        
+        closePrivacy.addEventListener('click', () => {
+            privacyPage.classList.remove('show');
+            overlay.classList.remove('show');
+        });
+        
+        closeContact.addEventListener('click', () => {
+            contactPage.classList.remove('show');
+            overlay.classList.remove('show');
+        });
+        
+        closeTerms.addEventListener('click', () => {
+            termsPage.classList.remove('show');
+            overlay.classList.remove('show');
+        });
+        
+        // Close info pages when clicking on overlay
+        overlay.addEventListener('click', () => {
+            aboutPage.classList.remove('show');
+            privacyPage.classList.remove('show');
+            contactPage.classList.remove('show');
+            termsPage.classList.remove('show');
+            overlay.classList.remove('show');
+        });
+    </script>
+</body>
+</html>
