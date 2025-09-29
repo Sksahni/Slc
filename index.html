@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Universal Secret Language Coder - A futuristic project unveiling a new era of communication through mystical and universal language technology.">
+  <meta name="keywords" content="Secret Language, Universal Language, Decoder, Encoder, Futuristic Project, Animation Intro">
+  <meta name="author" content="Your Name">
+
+  <title>Universal Secret Language Coder - Grand Intro</title>
+
+  <!-- Premium Fonts -->
+  <style>
+    @font-face {
+      font-family: 'RaseOne';
+      src: url('RaseOne Original.ttf') format('truetype');
+    }
+    @font-face {
+      font-family: 'Shakies';
+      src: url('Shakies-Web-TT.ttf') format('truetype');
+    }
+    @font-face {
+      font-family: 'QueenMisti';
+      src: url('Queen Misti.ttf') format('truetype');
+    }
+  </style>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Animate.css for subtle effects -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    /* Background Mystical Object Animation */
+    .background-orb {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(255,255,255,0.3), transparent 70%);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      animation: floatOrb 6s ease-in-out infinite alternate;
+      filter: blur(50px);
+      z-index: 0;
+    }
+
+    @keyframes floatOrb {
+      0% { transform: translate(-50%, -50%) scale(1); }
+      100% { transform: translate(-50%, -60%) scale(1.2); }
+    }
+
+    .intro-text {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+      text-align: center;
+      padding: 0 1rem;
+    }
+
+    .title {
+      font-family: 'RaseOne', cursive;
+      font-size: 2.8rem;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    .typewriter {
+      font-family: 'QueenMisti', cursive;
+      font-size: 1.3rem;
+      white-space: pre-line;
+      overflow: hidden;
+      border-right: 2px solid #fff;
+      display: inline-block;
+      animation: blink 0.7s step-end infinite alternate;
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+
+    .visit-btn {
+      margin-top: 2rem;
+      padding: 0.8rem 1.8rem;
+      font-family: 'Shakies', cursive;
+      font-size: 1.3rem;
+      background: linear-gradient(45deg, #ff00cc, #3333ff);
+      border: none;
+      border-radius: 9999px;
+      cursor: pointer;
+      color: white;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .visit-btn:hover {
+      transform: scale(1.08);
+      box-shadow: 0 0 25px rgba(255, 0, 200, 0.7);
+    }
+
+    @media (max-width: 768px) {
+      .title { font-size: 2rem; }
+      .typewriter { font-size: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="background-orb"></div>
+
+  <div class="intro-text">
+    <h1 class="title animate__animated animate__fadeInDown">🌐 Universal Secret Language Coder 🌐</h1>
+    <p id="typewriter" class="typewriter"></p>
+
+    <button class="visit-btn animate__animated animate__fadeInUp animate__delay-2s" onclick="window.location.href='/slc.html'">Start Visit</button>
+  </div>
+
+  <script>
+    const textContent = 
+`✨ We proudly introduce our revolutionary project:
+The "Universal Secret Language Coder" — a futuristic leap into mystical communication.
+Experience the world where languages unite, codes reveal secrets, and intelligence meets imagination.
+
+🌟 Embark on a journey where boundaries of languages disappear.
+Witness the most unique and universal secret language generator ever created.
+
+-------------------------------------------------------------
+✨ हम गर्व के साथ पेश कर रहे हैं हमारा क्रांतिकारी प्रोजेक्ट:
+"यूनिवर्सल सीक्रेट लैंग्वेज कोडर" — रहस्यमयी संवाद की एक भविष्यवादी छलांग।
+एक ऐसी दुनिया का अनुभव करें जहाँ भाषाएँ एक हो जाती हैं, कोड रहस्यों को उजागर करते हैं और बुद्धिमत्ता कल्पना से मिलती है।
+
+🌟 एक ऐसी यात्रा पर निकलें जहाँ भाषाओं की सीमाएँ खत्म हो जाती हैं।
+देखिए अब तक का सबसे अनोखा और यूनिवर्सल सीक्रेट लैंग्वेज जनरेटर।`;
+
+    const typewriterEl = document.getElementById('typewriter');
+    let i = 0;
+
+    function typeWriter() {
+      if (i < textContent.length) {
+        typewriterEl.textContent += textContent.charAt(i);
+        i++;
+        setTimeout(typeWriter, 35); // typing speed
+      } else {
+        // Hide the cursor after typing is complete
+        typewriterEl.style.borderRight = 'none';
+      }
+    }
+
+    window.onload = () => {
+      typewriterEl.textContent = "";
+      i = 0;
+      typeWriter();
+    };
+  </script>
+</body>
+</html>
